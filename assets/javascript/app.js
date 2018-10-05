@@ -44,6 +44,14 @@ $(document).ready(function() {
                 console.log(update.val().destination);
                 console.log(update.val().startTime);
                 console.log(update.val().frequency);
+
+
+                // Append each train route to the schedule 
+                $("#appendHere").append("<tr><td>" + update.val().trainName + "</td><td>" +
+                update.val().destination + "</td><td>" + 
+                update.val().startTime + "</td></tr>")
+
+
             });
 
 
