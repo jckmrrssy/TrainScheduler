@@ -52,11 +52,11 @@ $(document).ready(function() {
             // Moment.js stuff
             var current = moment();
 
-            var firstTrainConverted = moment(startTime, "HH:mm").subtract(1, 'years');
+            var firstTrainConverted = moment(startTime, "HH:mm").subtract(1, "years");
             var timeDiff = current.diff(moment(firstTrainConverted), "minutes");
             var remainder = timeDiff % frequency;
             var minutesTilTrain = frequency - remainder;
-            var nextTrain = current.add(minutesTilTrain, 'minutes');
+            var nextTrain = current.add(minutesTilTrain, "minutes");
 
 
             // Append each train route to the schedule 
