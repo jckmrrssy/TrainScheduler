@@ -38,6 +38,13 @@ $(document).ready(function() {
 
       });
 
+        // Listen to firebase for changes and update DOM
+            database.ref().on("child_added", function(update) {
+                console.log(update.val().trainName);
+                console.log(update.val().destination);
+                console.log(update.val().startTime);
+                console.log(update.val().frequency);
+            });
 
 
 
