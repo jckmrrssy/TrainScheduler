@@ -12,6 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
 </head>
 <body>
+    
     <div class='container'>
         <br>
         <!-- Header -->
@@ -20,38 +21,77 @@
             <h3 class='text-center'>featuring Firebase</h3>
         </div>
 
+      
         <!-- This is where trains added will go -->
-        
-        
-        
-        
-        <!-- Input form -->
-        <div class ='row'>
+        <div class='row'>
             <div class='col-lg-12'>
-                <form>
-                    <!-- Name input -->
-                    <div class='form-group'>
-                        <label for='trainNameInput'>Train Name</label>
-                        <input type='text' class='form-control' id='trainNameInput' placeholder='Enter train'>
+                <div class='card'>
+                    <div class='card-header'>
+                        Current Train Schedule
                     </div>
-                    <!-- Destination Input -->
-                    <div class='form-group'>
-                        <label for='trainDestinationInput'>Destination</label>
-                        <input type='text' class='form-control' id='trainDestinationInput' placeholder="Enter destination">
+                    <!-- Table for train data -->
+                    <div class='card-body'>
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Frequency (minutes)</th>
+                                    <th scope="col">Next Arrival</th>
+                                    <th scope="col">Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>a train</td>
+                                    <td>a test</td>
+                                    <td>a train</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- First train time -->
-                    <div class='form-group'>
-                        <label for='firstTrainTimeInput'>First Train Time (HH:mm - military time)</label>
-                        <input type='number' class='form-control' id='firstTrainInput'>
-                    </div>
-                    <!-- Frequency -->
-                    <div class='form-group'>
-                        <label for='frequencyInput'>Frequency</label>
-                        <input type='number' class='form-control' id='frequencyInput' placeholder='minutes'>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
+        
+        
+        
+    <!-- Input form -->
+    <div class ='row'>
+        <div class='col-lg-12'>
+            <div class='card'>
+                <div class='card-header'>
+                    Add a train
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Name input -->
+                        <div class='form-group'>
+                            <label for='trainNameInput'>Train Name</label>
+                            <input type='text' class='form-control' id='trainNameInput' placeholder='Enter train'>
+                        </div>
+                        <!-- Destination Input -->
+                        <div class='form-group'>
+                            <label for='trainDestinationInput'>Destination</label>
+                            <input type='text' class='form-control' id='destinationInput' placeholder="Enter destination">
+                        </div>
+                        <!-- First train time -->
+                        <div class='form-group'>
+                            <label for='firstTrainTimeInput'>First Train Time (HH:mm - military time)</label>
+                            <input type='number' class='form-control' id='firstTrainInput'>
+                        </div>
+                        <!-- Frequency -->
+                        <div class='form-group'>
+                            <label for='frequencyInput'>Frequency</label>
+                            <input type='number' class='form-control' id='frequencyInput' placeholder='minutes'>
+                        </div>
+                        <!-- Submit button -->
+                        <button type='submit' id='submitIt' class='btn btn-light'>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
