@@ -50,13 +50,19 @@ $(document).ready(function() {
             console.log(update.val().frequency);
 
             // Moment.js stuff
-            var current = moment();
+            var current = moment()
+            
 
-            var firstTrainConverted = moment(startTime, "HH:mm").subtract(1, "years");
-            var timeDiff = current.diff(moment(firstTrainConverted), "minutes");
+            formattedStart = moment(startTime, "HH:mm");
+            console.log(formattedStart);
+            var timeDiff = current.diff(moment(formattedStart), "minutes");
+            console.log(timeDiff);
             var remainder = timeDiff % frequency;
+            console.log(remainder);
             var minutesTilTrain = frequency - remainder;
+            console.log(minutesTilTrain);
             var nextTrain = current.add(minutesTilTrain, "minutes");
+            console.log(nextTrain);
 
 
             // Append each train route to the schedule 
