@@ -37,7 +37,7 @@ $(document).ready(function() {
         frequency: frequency,
     });
 
-
+    
 
 
     });
@@ -50,19 +50,19 @@ $(document).ready(function() {
             console.log(update.val().frequency);
 
             // Moment.js stuff
-            var current = moment()
-            
+            var current = moment();
+            console.log(current);
 
-            formattedStart = moment(startTime, "HH:mm");
-            console.log(formattedStart);
+            formattedStart = moment(startTime, "HH:mm")
+            console.log(formattedStart, "this is formatted start");
             var timeDiff = current.diff(moment(formattedStart), "minutes");
-            console.log(timeDiff);
+            console.log(timeDiff, "this is time diff");
             var remainder = timeDiff % frequency;
-            console.log(remainder);
+            console.log(remainder, "this is remainder");
             var minutesTilTrain = frequency - remainder;
-            console.log(minutesTilTrain);
+            console.log(minutesTilTrain, "this is minutes till train");
             var nextTrain = current.add(minutesTilTrain, "minutes");
-            console.log(nextTrain);
+            console.log(nextTrain, "this is next train");
 
 
             // Append each train route to the schedule 
@@ -70,7 +70,7 @@ $(document).ready(function() {
             update.val().destination + "</td><td>" + 
             update.val().frequency + "</td><td>" + 
             moment(nextTrain).format("HH:mm a") + 
-            "</td><td>" + moment(minutesTilTrain, "minutes") +"</td></tr>")
+            "</td><td>" + minutesTilTrain +"</td></tr>")
 
 
         });
