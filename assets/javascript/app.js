@@ -16,7 +16,9 @@ $(document).ready(function() {
     var database = firebase.database();
 
     // Button click capture
-    $("#submitIt").on("click", function(event) {
+    function grabInputs (event) {
+        
+        
         event.preventDefault();
         var trainName = $("#trainNameInput").val().trim();
         var trainDestination = $("#destinationInput").val().trim();
@@ -32,19 +34,29 @@ $(document).ready(function() {
             dataAdded: firebase.database.ServerValue.TIMESTAMP,
     });
 
-     // Clear input values
-     $("#trainNameInput").val("");
-     $("#destinationInput").val("");
-     $("firstTrainInput").val("");
-     $("frequencyInput").val("");
+         // Clear input values
+        $("#trainNameInput").val("");
+        $("#destinationInput").val("");
+        $("firstTrainInput").val("");
+        $("frequencyInput").val("");
 
 
+};
+
+
+    $("#submitIt").on("click", function(event) {
+    
+        if ($("#trainNameInput").val().length === 0 || $("#destinationInput").val().length === 0 || $("#firstTrainInput").val().length === 0 || $("#frequencyInput").val().length === 0) {
+            alert("Please complete all fields");
+        } else {
+            grabInputs(event);  
+    }    
 });
-
 
     // Listen to firebase for changes and update DOM
     database.ref().on("child_added", function(update) {
-           
+          
+        // Adding variables to store firebase values
         var trainName = update.val().name;
         var trainDestination = update.val().destination;
         var startTime = update.val().start;
@@ -55,6 +67,7 @@ $(document).ready(function() {
         console.log(startTime);
         console.log(trainFrequency);
 
+        // Moment.js time conversion & calculation
         var convertedStart = moment(startTime, "HH:mm").subtract(1, 'years');
         console.log(convertedStart, "converted start")
 
@@ -70,6 +83,7 @@ $(document).ready(function() {
         nextTrain = moment().add(minutesTilTrain, "minutes").format("HH:mm");
         console.log(nextTrain, "next train");
         
+        // Store each output into a table row 
         var newRow = $("<tr>").append(
             $("<td>").text(trainName),
             $("<td>").text(trainDestination),
@@ -78,7 +92,7 @@ $(document).ready(function() {
             $("<td>").text(minutesTilTrain),
         );
 
-        // Append each train route to the schedule 
+        // Append table row to the schedule 
         $("#appendHere").append(newRow)
 
 
