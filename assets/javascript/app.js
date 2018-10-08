@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAN_AxTD6XqNqU2gOMSLgLAQbrhTitZDbY",
@@ -14,69 +15,75 @@ $(document).ready(function() {
 
     var database = firebase.database();
 
-    var trainName = '';
-    var destination = '';
-    var startTime = '';
-    var frequency = 0;
-
-    
-
     // Button click capture
     $("#submitIt").on("click", function(event) {
-    event.preventDefault();
-    trainName = $("#trainNameInput").val().trim();
-    destination = $("#destinationInput").val().trim();
-    startTime = $("#firstTrainInput").val().trim();
-    frequency = $("#frequencyInput").val().trim();
+        event.preventDefault();
+        var trainName = $("#trainNameInput").val().trim();
+        var trainDestination = $("#destinationInput").val().trim();
+        var startTime = $("#firstTrainInput").val().trim();
+        var trainFrequency = $("#frequencyInput").val().trim();
 
-    // Push values to Firebase
-    database.ref().push({
-        trainName: trainName,
-        destination: destination,
-        startTime: startTime,
-        frequency: frequency,
+        // Push values to Firebase
+        database.ref().push({
+            name: trainName,
+            destination: trainDestination,
+            start: startTime,
+            frequency: trainFrequency,
+            dataAdded: firebase.database.ServerValue.TIMESTAMP,
+    });
+
+     // Clear input values
+     $("#trainNameInput").val("");
+     $("#destinationInput").val("");
+     $("firstTrainInput").val("");
+     $("frequencyInput").val("");
+
+
+});
+
+
+    // Listen to firebase for changes and update DOM
+    database.ref().on("child_added", function(update) {
+           
+        var trainName = update.val().name;
+        var trainDestination = update.val().destination;
+        var startTime = update.val().start;
+        var trainFrequency = update.val().frequency;
+        
+        console.log(trainName);
+        console.log(trainDestination);
+        console.log(startTime);
+        console.log(trainFrequency);
+
+        var convertedStart = moment(startTime, "HH:mm").subtract(1, 'years');
+        console.log(convertedStart, "converted start")
+
+        timeDiff = moment().diff(moment(convertedStart), "minutes");
+        console.log(timeDiff, "timeDiff");
+        
+        remainder = timeDiff % trainFrequency;
+        console.log(remainder, "remainder");
+        
+        minutesTilTrain = trainFrequency - remainder;
+        console.log(minutesTilTrain, "minutes till train");
+        
+        nextTrain = moment().add(minutesTilTrain, "minutes").format("HH:mm");
+        console.log(nextTrain, "next train");
+        
+        var newRow = $("<tr>").append(
+            $("<td>").text(trainName),
+            $("<td>").text(trainDestination),
+            $("<td>").text(trainFrequency),
+            $("<td>").text(nextTrain),
+            $("<td>").text(minutesTilTrain),
+        );
+
+        // Append each train route to the schedule 
+        $("#appendHere").append(newRow)
+
+
     });
 
     
-
-
-    });
-
-    // Listen to firebase for changes and update DOM
-        database.ref().on("child_added", function(update) {
-            console.log(update.val().trainName);
-            console.log(update.val().destination);
-            console.log(update.val().startTime);
-            console.log(update.val().frequency);
-
-            // Moment.js stuff
-            var current = moment();
-            console.log(current);
-
-            formattedStart = moment(startTime, "HH:mm")
-            console.log(formattedStart, "this is formatted start");
-            var timeDiff = current.diff(moment(formattedStart), "minutes");
-            console.log(timeDiff, "this is time diff");
-            var remainder = timeDiff % frequency;
-            console.log(remainder, "this is remainder");
-            var minutesTilTrain = frequency - remainder;
-            console.log(minutesTilTrain, "this is minutes till train");
-            var nextTrain = current.add(minutesTilTrain, "minutes");
-            console.log(nextTrain, "this is next train");
-
-
-            // Append each train route to the schedule 
-            $("#appendHere").append("<tr><td>" + update.val().trainName + "</td><td>" +
-            update.val().destination + "</td><td>" + 
-            update.val().frequency + "</td><td>" + 
-            moment(nextTrain).format("HH:mm a") + 
-            "</td><td>" + minutesTilTrain +"</td></tr>")
-
-
-        });
-
-   
-
-
-
+ 
 });
