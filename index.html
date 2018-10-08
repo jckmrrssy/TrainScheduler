@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="assets/javascript/app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
 </head>
 <body>
     
@@ -74,13 +76,13 @@
                         </div>
                         <!-- First train time -->
                         <div class='form-group'>
-                            <label for='firstTrainTimeInput'>First Train Time</label>
-                            <input type='textx' class='form-control' id='firstTrainInput' placeholder ="(HH:mm) - military time">
+                            <label for='firstTrainTimeInput'>First Train (Military Time)</label>
+                            <input type='text' class='form-control' id='firstTrainInput' placeholder="00:00"/>
                         </div>
                         <!-- Frequency -->
                         <div class='form-group'>
                             <label for='frequencyInput'>Frequency</label>
-                            <input type='number' class='form-control' id='frequencyInput' placeholder='minutes'>
+                            <input type='number' class='form-control' id='frequencyInput' placeholder="0"/>
                         </div>
                         <!-- Submit button -->
                         <button type='submit' id='submitIt' class='btn btn-light'>Submit</button>

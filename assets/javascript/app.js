@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-    
+    $("#firstTrainInput").mask("00:00");
+    $("#frequencyInput").mask("00");
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAN_AxTD6XqNqU2gOMSLgLAQbrhTitZDbY",
@@ -37,6 +39,7 @@ $(document).ready(function() {
          // Clear input values
         $("#trainNameInput").val("");
         $("#destinationInput").val("");
+        // Not sure why these won't clear 
         $("firstTrainInput").val("");
         $("frequencyInput").val("");
 
