@@ -1,6 +1,6 @@
 # Train Scheduler
 
-This is a train scheduling application intended be used by a scheduling adminstrator to keep track of departures. Moment.js and Firebase are the featured technologies in this app.
+This is a train scheduling application intended be used by a scheduling administrator to keep track of departures. Moment.js and Firebase are the featured technologies in this app.
 
 ## [Try it out](https://jckmrrssy.github.io/TrainScheduler/)
 
