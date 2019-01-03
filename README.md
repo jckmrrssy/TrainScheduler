@@ -4,6 +4,8 @@ This is a train scheduling application intended be used by a scheduling administ
 
 ## [Try it out](https://jckmrrssy.github.io/TrainScheduler/)
 
+![image](./assets/trainscheduler.png)
+      
 ## Built With
 
 * [Firebase](https://firebase.google.com/) - App development platform
