@@ -4,7 +4,7 @@ This is a train scheduling application intended be used by a scheduling administ
 
 ## [Try it out](https://jckmrrssy.github.io/TrainScheduler/)
 
-## [Watch the demo](https://drive.google.com/open?id=1EvahjHsJdlGqkN9fwWTzMAwwEZtvBmmq)
+## [Watch the demo](https://drive.google.com/open?id=1jzhiVl8vaGmyWns-xndup8jh886ABEq7)
 
 ![image](./assets/trainscheduler.png)
       
